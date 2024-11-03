@@ -21,29 +21,25 @@ public class ChunkGenerator : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
-    {
-        foreach (Player player in World.Instance.players)
-        {
-            GenerateChunks(player);
-        }
-    }
-
     void OnEnable()
     {
         World.Instance.onPlayerLocationChanged += OnPlayerLocationChanged;
+
+        World.Instance.onPlayerLoaded += OnPlayerLoaded;
     }
 
     void OnDisable()
     {
         World.Instance.onPlayerLocationChanged -= OnPlayerLocationChanged;
+
+        World.Instance.onPlayerLoaded -= OnPlayerLoaded;
     }
 
     private void OnPlayerLocationChanged(Player player)
     {
         GenerateChunks(player);
 
-        FindAndDeleteDirtyChunks(player);
+        FindAndDeleteDirtyChunks();
     }
 
     private void GenerateChunks(Player player)
@@ -93,13 +89,13 @@ public class ChunkGenerator : MonoBehaviour
         return chunk;
     }
 
-    private void FindAndDeleteDirtyChunks(Player player)
+    private void FindAndDeleteDirtyChunks()
     {
         List<Chunk> dirtyChunks = new List<Chunk>();
 
         foreach (Chunk chunk in ChunkHolder.Instance.chunks)
         {
-            if (!World.Instance.ChunkInRange(chunk.position, player.ChunkPosition()))
+            if (!World.Instance.ChunkInRangeAnyPlayer(chunk.position))
             {
                 dirtyChunks.Add(chunk);
             }
@@ -112,5 +108,10 @@ public class ChunkGenerator : MonoBehaviour
             ChunkHolder.Instance.chunks.Remove(chunk);
             Destroy(chunk.gameObject);
         }
+    }
+
+    private void OnPlayerLoaded(Player player)
+    {
+        GenerateChunks(player);
     }
 }

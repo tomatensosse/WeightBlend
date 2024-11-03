@@ -34,11 +34,14 @@ public class MeshGenerator : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    void OnEnable()
     {
-        CalculateConstants();
+        World.Instance.onWorldDataLoaded += OnWorldDataLoaded;
+    }
 
-        CreateBuffers();
+    void OnDisable()
+    {
+        World.Instance.onWorldDataLoaded -= OnWorldDataLoaded;
     }
 
     void OnDestroy()
@@ -129,7 +132,6 @@ public class MeshGenerator : MonoBehaviour
         }
     }
 
-
     private void ReleaseBuffers()
     {
         if (triangleBuffer != null)
@@ -138,6 +140,12 @@ public class MeshGenerator : MonoBehaviour
             pointsBuffer.Release();
             triCountBuffer.Release();
         }
+    }
+
+    private void OnWorldDataLoaded(WorldData worldData)
+    {
+        CalculateConstants();
+        CreateBuffers();
     }
 
     struct Triangle {

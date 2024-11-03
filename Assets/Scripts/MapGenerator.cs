@@ -6,11 +6,6 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
-    void Start()
-    {
-        
-    }
-
     void Awake()
     {
         if (Instance != null)

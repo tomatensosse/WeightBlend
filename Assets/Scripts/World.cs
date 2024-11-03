@@ -7,17 +7,18 @@ public class World : MonoBehaviour
 {
     public static World Instance { get; private set; }
 
+    public static WorldData WorldData { get { return Instance.worldData; } }
     public static int RenderDistanceHorizontal { get { return Instance.renderDistanceHorizontal; } }
     public static int RenderDistanceVertical { get { return Instance.renderDistanceVertical; } }
-    public static int ChunkSize { get { return Instance.chunkSize; } }
-    public static int NumPointsPerAxis { get { return Instance.numPointsPerAxis; } }
+    public static int Seed { get { return Instance.worldData.seed; } }
+    public static int ChunkSize { get { return Instance.worldData.chunkSize; } }
+    public static int NumPointsPerAxis { get { return Instance.worldData.numPointsPerAxis; } }
     public static List<Player> Players { get { return Instance.players; } }
-
-    public int renderDistanceHorizontal = 3;
-    public int renderDistanceVertical = 2;
-    public int chunkSize = 64;
-    public int numPointsPerAxis = 32;
-    public List<Player> players;
+    
+    private int renderDistanceHorizontal = 3;
+    private int renderDistanceVertical = 2;
+    private WorldData worldData;
+    private List<Player> players = new List<Player>();
 
     public Dictionary<Player, Vector3Int> playerPositions = new Dictionary<Player, Vector3Int>();
 
@@ -25,6 +26,12 @@ public class World : MonoBehaviour
 
     public delegate void OnPlayerLocationChanged(Player player);
     public OnPlayerLocationChanged onPlayerLocationChanged;
+
+    public delegate void OnWorldSaveLoaded(WorldData worldData);
+    public OnWorldSaveLoaded onWorldDataLoaded;
+
+    public delegate void OnPlayerLoaded(Player player);
+    public OnPlayerLoaded onPlayerLoaded;
 
     void Awake()
     {
@@ -37,22 +44,15 @@ public class World : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
-    {
-        Player[] find = GameObject.FindObjectsOfType<Player>();
-
-        players = find.ToList();
-
-        foreach (Player player in players)
-        {
-            playerPositions.Add(player, WorldToChunkPosition(player.transform.position));
-        }
-    }
-
     void Update()
     {
         foreach (Player player in players)
         {
+            if (player == null)
+            {
+                Debug.LogError("Player was null. It should have been removed");
+            }
+
             Vector3Int playerChunkPosition = WorldToChunkPosition(player.transform.position);
 
             if (playerPositions[player] != playerChunkPosition)
@@ -66,7 +66,7 @@ public class World : MonoBehaviour
 
     public Vector3Int WorldToChunkPosition(Vector3 position)
     {
-        int offset = World.ChunkSize / 2;
+        int offset = ChunkSize / 2;
 
         return new Vector3Int(
             Mathf.FloorToInt((position.x + offset) / ChunkSize),
@@ -84,5 +84,41 @@ public class World : MonoBehaviour
             chunkPosition.y <= playerChunkPosition.y + RenderDistanceVertical &&
             chunkPosition.z >= playerChunkPosition.z - RenderDistanceHorizontal &&
             chunkPosition.z <= playerChunkPosition.z + RenderDistanceHorizontal;
+    }
+
+    public bool ChunkInRangeAnyPlayer(Vector3Int chunkPosition)
+    {
+        foreach (Player player in players)
+        {
+            if (ChunkInRange(chunkPosition, playerPositions[player]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void SetWorld(WorldData worldData)
+    {
+        this.worldData = worldData;
+
+        onWorldDataLoaded.Invoke(worldData);
+
+        AddPlayer("Player");
+    }
+
+    public void AddPlayer(string playerName)
+    {
+        GameObject playerGameObject = new GameObject(playerName);
+        playerGameObject.transform.position = new Vector3(0, 0, 0);
+
+        Player player = playerGameObject.AddComponent<Player>();
+
+        players.Add(player);
+
+        playerPositions.Add(player, WorldToChunkPosition(player.transform.position));
+
+        onPlayerLoaded.Invoke(player);
     }
 }

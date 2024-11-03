@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // TBA
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // TBA
     }
 
     public Vector3Int ChunkPosition()

@@ -10,8 +10,6 @@ public class DensityGenerator : MonoBehaviour
 
     List<ComputeBuffer> buffersToRelease;
 
-    public int seed;
-    public int numPointsPerAxis = 32;
     public int numOctaves = 4;
     public float lacunarity = 2;
     public float persistence = .5f;
@@ -28,6 +26,10 @@ public class DensityGenerator : MonoBehaviour
 
     const int threadGroupSize = 8;
 
+    private int seed;
+    private int numPointsPerAxis;
+    private int renderDistanceHorizontal;
+    private int renderDistanceVertical;
     private Vector3 centre;
     private Vector3 offset;
     private float boundsSize;
@@ -49,20 +51,29 @@ public class DensityGenerator : MonoBehaviour
     {
         ChunkGenerator.Instance.onNewChunksGenerated += OnNewChunksGenerated;
 
-        GenerateConstants();
+        World.Instance.onWorldDataLoaded += OnWorldDataLoaded;
     }
 
     void OnDisable()
     {
         ChunkGenerator.Instance.onNewChunksGenerated -= OnNewChunksGenerated;
+
+        World.Instance.onWorldDataLoaded -= OnWorldDataLoaded;
     }
 
-    void GenerateConstants()
+    private void GenerateConstants()
     {
+        Debug.Log("Generating constants");
+
+        seed = World.Seed;
+        numPointsPerAxis = World.NumPointsPerAxis;
+        renderDistanceHorizontal = World.RenderDistanceHorizontal;
+        renderDistanceVertical = World.RenderDistanceVertical;
+
         boundsSize = World.ChunkSize;
         offset = new Vector3(0, 0, 0);
         spacing = boundsSize / (numPointsPerAxis - 1);
-        worldBounds = new Vector3(World.RenderDistanceHorizontal, World.RenderDistanceVertical, World.RenderDistanceHorizontal) * World.ChunkSize;
+        worldBounds = new Vector3(renderDistanceHorizontal, renderDistanceVertical, renderDistanceHorizontal) * World.ChunkSize;
     }
 
     private void OnNewChunksGenerated(List<Chunk> newChunks)
@@ -132,5 +143,10 @@ public class DensityGenerator : MonoBehaviour
         chunk.SetDensity(pointsBuffer);
 
         pointsBuffer.Release();
+    }
+
+    private void OnWorldDataLoaded(WorldData worldData)
+    {
+        GenerateConstants();
     }
 }

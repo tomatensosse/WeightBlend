@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca5362c25b1e4fc2838776bb1281951, type: 3}
+  m_Name: Desert
+  m_EditorClassIdentifier: 
+  biomeUID: biome_desert
+  biomeName: Desert
+  biomeColor: {r: 0.9245283, g: 0.7749216, b: 0.2660199, a: 1}
+  densityNodes:
+  - densityNode: {fileID: 0}
+    overriddenParameters: []
+  - densityNode: {fileID: 11400000, guid: e43a6b79eca3f4d71b5cdec8f3bde6e8, type: 2}
+    overriddenParameters:
+    - name: octaves
+      type: 1
+      floatValue: 0
+      intValue: 1
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: noiseScale
+      type: 0
+      floatValue: 0.5
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: e43a6b79eca3f4d71b5cdec8f3bde6e8, type: 2}
+    overriddenParameters:
+    - name: octaves
+      type: 1
+      floatValue: 0
+      intValue: 1
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: noiseScale
+      type: 0
+      floatValue: 0.5
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: e43a6b79eca3f4d71b5cdec8f3bde6e8, type: 2}
+    overriddenParameters:
+    - name: octaves
+      type: 1
+      floatValue: 0
+      intValue: 1
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: noiseScale
+      type: 0
+      floatValue: 0.5
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: a41178864ca9640c1b42518fda6ce20b, type: 2}
+    overriddenParameters:
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: a41178864ca9640c1b42518fda6ce20b, type: 2}
+    overriddenParameters:
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: a41178864ca9640c1b42518fda6ce20b, type: 2}
+    overriddenParameters:
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: 
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+  - densityNode: {fileID: 11400000, guid: 051d5bad3218f40f9a4c4b20c71aba8a, type: 2}
+    overriddenParameters:
+    - name: octaves
+      type: 1
+      floatValue: 0
+      intValue: 2
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: lacunarity
+      type: 0
+      floatValue: 0.5
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: persistence
+      type: 0
+      floatValue: 1
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: noiseScale
+      type: 0
+      floatValue: 0.2
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: noiseWeight
+      type: 0
+      floatValue: 8
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: floorOffset
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: weightMultiplier
+      type: 0
+      floatValue: 4
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: closeEdges
+      type: 2
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: hardFloor
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: hardFloorWeight
+      type: 0
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 0, y: 0, z: 0, w: 0}
+    - name: params
+      type: 5
+      floatValue: 0
+      intValue: 0
+      boolValue: 0
+      vector2Value: {x: 0, y: 0}
+      vector3Value: {x: 0, y: 0, z: 0}
+      vector4Value: {x: 1, y: 0, z: 0, w: 0}
